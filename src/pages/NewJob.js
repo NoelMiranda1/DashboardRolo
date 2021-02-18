@@ -107,14 +107,13 @@ export default function Register() {
           { ...val.data, state: state ? "Activo" : "Desactivo" },
         ];
       });
-      {
-        !completed &&
-          Swal.fire({
-            icon: "success",
-            title: "Registro completo...",
-            text: "Registro en la tabla",
-          });
-      }
+
+      !completed &&
+        Swal.fire({
+          icon: "success",
+          title: "Registro completo...",
+          text: "Registro en la tabla",
+        });
     },
   });
 
@@ -204,7 +203,7 @@ export default function Register() {
         ...grid.current.getColumnSearch("experience"),
       },
       {
-        title: "Latitud",
+        title: "Lat",
         dataIndex: "lat",
         key: "9",
         width: 50,
@@ -212,7 +211,7 @@ export default function Register() {
         ...grid.current.getColumnSearch("lat"),
       },
       {
-        title: "Longitud",
+        title: "Long",
         dataIndex: "lng",
         key: "9",
         width: 50,
@@ -231,7 +230,7 @@ export default function Register() {
         title: "Estado",
         dataIndex: "state",
         key: "9",
-        width: 50,
+        width: 100,
 
         ...grid.current.getColumnSearch("state"),
       },
