@@ -116,7 +116,7 @@ const FilteredGrid = forwardRef((props, ref) => {
 
   useEffect(() => {
     setRows(props.rows);
-    console.log("rows enviados: ", props.rows);
+    // console.log("rows enviados: ", props.rows);
   }, [props.rows]);
 
   useEffect(() => {

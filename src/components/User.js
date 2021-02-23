@@ -1,37 +1,18 @@
 import React, { useState, useCallback, useEffect } from "react";
-
+import api from '../api'
 const User = () => {
-  const [values, setValues] = useState([]);
+  const [data, setData] = useState()
+
   const fetchData = useCallback(async () => {
-    const finalarrray = [];
-    const data = await JSON.parse(localStorage.getItem("token"));
-    console.log(data);
-    const res = await fetch(
-      "https://api-senior-care.herokuapp.com/api/v1/user/user-info",
-      {
-        headers: {
-          "Access-Control-Allow-Origin": "http://localhost:3000",
-          token: `${data?.token}`,
-        },
-      }
-    );
-    const valor = await res.json();
-    finalarrray.push(valor);
-    setValues(finalarrray);
+    const res = await api.getuser()
+    setData(res?.data)
   }, []);
   useEffect(() => {
-    console.log(values);
-    fetchData();
-  }, [fetchData]);
+    fetchData()
+  }, []);
   return (
     <div>
-      {values?.map((item, i) => {
-        return (
-          <div key={i}>
-            <span>{item.firstname}</span>
-          </div>
-        );
-      })}
+      <span>{data?.firstname}</span>
     </div>
   );
 };

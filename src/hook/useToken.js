@@ -21,17 +21,13 @@ export default function useToken() {
       return null;
     }
   });
-
   const saveToken = (userToken) => {
-    // console.log(userToken);
     localStorage.setItem("token", JSON.stringify(userToken));
     setToken(userToken?.token);
   };
 
-  const deleteToken = () => {
-    // console.log(userToken);
-    window.localStorage.removeItem("token", "");
-    setToken(null);
+  const deleteToken = (remove) => {
+    setToken(remove);
   };
 
   return {

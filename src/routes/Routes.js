@@ -8,6 +8,7 @@ import {
   HomeOutlined,
   FileAddOutlined,
   LogoutOutlined,
+  UserAddOutlined,
 } from "@ant-design/icons";
 import "antd/dist/antd.css";
 import "../style/nav.css";
@@ -17,6 +18,7 @@ import Login from "../pages/auth/Login";
 import NewJob from "../pages/NewJob";
 // import Register from "../pages/auth/Register";
 import User from "../components/User";
+import NewUser from "../pages/NewUser";
 //Hooks
 import useToken from "../hook/useToken";
 
@@ -29,7 +31,7 @@ const Notfound = () => (
   />
 );
 const Routes = () => {
-  const { token, setToken } = useToken();
+  const { token, setToken ,updateToken} = useToken();
   const { Header, Sider, Content, Footer } = Layout;
   const [collapsed, setcollapsed] = useState(false);
   const toggle = () => {
@@ -50,14 +52,18 @@ const Routes = () => {
               <Menu.Item key="2" icon={<FileAddOutlined />}>
                 <Link to="/newjob">Nuevo trabajo</Link>
               </Menu.Item>
+              <Menu.Item key="3" icon={<UserAddOutlined />}>
+                <Link to="/newuser">Nuevo Usuario</Link>
+              </Menu.Item>
               <Menu.Item
-                key="3"
+                key="4"
                 onClick={() => {
-                  setToken(null);
+                  const tok = localStorage.removeItem("token")
+                  updateToken(tok);
                 }}
                 icon={<LogoutOutlined />}
               >
-                <Link to="/">log out</Link>
+                <Link >log out</Link>
               </Menu.Item>
             </Menu>
           </Sider>
@@ -95,13 +101,16 @@ const Routes = () => {
             >
               <div>
                 <Switch>
-                  <Route path="/newjob" exact>
-                    <NewJob />
-                  </Route>
-                  <Route path="/newuser"></Route>
                   <Route path="/" exact>
                     <Home />
                   </Route>
+                  <Route path="/newjob" exact>
+                    <NewJob />
+                  </Route>
+                  <Route path="/newuser">
+                    <NewUser />
+                  </Route>
+
                   <Route component={Notfound} />
                 </Switch>
               </div>

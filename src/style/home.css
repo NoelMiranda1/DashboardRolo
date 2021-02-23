@@ -15,4 +15,18 @@
   font-size: larger;
   font-weight: bold;
   padding: 10px;
+  text-align: center;
+}
+@media only screen and (max-width: 985px) {
+  .respo {
+    flex-direction: column !important;
+  }
+  .acti{
+    width: 90%;
+    text-align: center;
+  }
+  .us {
+
+    text-align: start;
+  }
 }
